@@ -5,9 +5,9 @@ Parameters
 
   * column: the column of the active record
   * options: some options for generating the token
-  ** :length: the token length (default: 8)
-  ** :uniq: whether the token must be uniq or not (default: true)
-  ** :scope: the column for the scope to check the uniqueness (default: nil)
+    * :length: the token length (default: 8)
+    * :uniq: whether the token must be uniq or not (default: true)
+    * :scope: the column for the scope to check the uniqueness (default: nil)
 
 Example
 -------
