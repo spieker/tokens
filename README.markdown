@@ -1,13 +1,17 @@
 For generating a token on an active record column you can use `generate_token`
 
-== Parameters
-* column: the column of the active record
-* options: some options for generating the token
-** :length: the token length (default: 8)
-** :uniq: whether the token must be uniq or not (default: true)
-** :scope: the column for the scope to check the uniqueness (default: nil)
+Parameters
+----------
 
-== Example
+  * column: the column of the active record
+  * options: some options for generating the token
+  ** :length: the token length (default: 8)
+  ** :uniq: whether the token must be uniq or not (default: true)
+  ** :scope: the column for the scope to check the uniqueness (default: nil)
+
+Example
+-------
+
 ```ruby
   class User < ActiveRecord::Base
     before_validation do |obj|
@@ -16,8 +20,12 @@ For generating a token on an active record column you can use `generate_token`
   end
 ```
 
-= Installation
+Installation
+------------
+
 Currently the gem is not available on rubyforge, so you have to install it with git:
 
+```
   gem 'tokens', :git => 'git://github.com/spieker/tokens.git'
+```
 
