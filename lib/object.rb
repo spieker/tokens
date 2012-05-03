@@ -8,11 +8,13 @@
 #   Object.new.new_token(10) # => "S2Mq4mJBv6" (i.e.)
 #
 class Object
-  def self.new_token(length=8)
-    Base58.encode(SecureRandom.random_number(58**length))
+  def self.new_token(length=8, characters = ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a)
+    result = ''
+    length.times { result += characters.shuffle.first.to_s }
+    result
   end
   
-  def new_token(length=8)
-    self.class.new_token(length)
+  def new_token(length=8, characters = ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a)
+    self.class.new_token(length, characters)
   end
 end
