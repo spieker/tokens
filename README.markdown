@@ -14,8 +14,16 @@ Example
 
 ```ruby
   class User < ActiveRecord::Base
-    before_validation do |obj|
-      obj.generate_token :email_confirmation_token, :length => 16
+    tokenize :email_confirmation_token, length: 16
+  end
+```
+
+this is equal to
+
+```ruby
+  class User < ActiveRecord::Base
+    before_validation on: :create do |obj|
+      obj.generate_token :email_confirmation_token, length: 16
     end
   end
 ```
