@@ -10,7 +10,9 @@
 class Object
   def self.new_token(length=8, characters = ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a)
     result = ''
-    length.times { result += characters.shuffle.first.to_s }
+    length.times do
+      result += characters[SecureRandom.random_number(characters.length)].to_s
+    end
     result
   end
   
