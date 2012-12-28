@@ -28,7 +28,8 @@ module ActiveRecord
             :length     => 8,
             :uniq       => true,
             :scope      => nil,
-            :same_token => false
+            :same_token => false,
+            :max_try    => 8
           }.merge(args.extract_options!)
           
           columns = [columns] unless columns.is_a?(Array)
@@ -36,12 +37,16 @@ module ActiveRecord
           result = {}
           token = nil
           columns.each do |column|
+            counter = 0
             begin
+              raise NoFreeToken.new(column) if counter >= options[:max_try]
+              counter += 1
+
               token = new_token(options[:length]) if(token.blank? or not options[:same_token])
               self.send("#{column}=".to_sym, token)
               result[column.to_sym]      = token
               condition                  = { column => token }
-              condition[options[:scope]] = self[options[:scope]] if options[:scope].is_a?(Symbol)
+              condition[options[:scope]] = self[options[:scope]] if options[:scope].is_a?(Symbol) or options[:scope].is_a?(String)
             end while options[:uniq] and self.class.exists?(condition)
           end
           result
