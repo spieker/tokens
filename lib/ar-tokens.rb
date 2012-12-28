@@ -1,4 +1,3 @@
-require 'base58'
 require 'object'
 require 'no_free_token'
 require 'securerandom'

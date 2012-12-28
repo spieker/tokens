@@ -34,6 +34,6 @@ Installation
 Currently the gem is not available on rubyforge, so you have to install it with git:
 
 ```
-  gem 'tokens', :git => 'git://github.com/spieker/tokens.git'
+  gem 'ar-tokens'
 ```
 

@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'tokens'
+require 'ar-tokens'
 require 'support/active_record'
 
 RSpec.configure do |config|
