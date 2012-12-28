@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/spieker/tokens.png?branch=master)](https://travis-ci.org/spieker/tokens)
+
 For generating a token on an active record column you can use `generate_token`
 
 Parameters
