@@ -39,3 +39,6 @@ Currently the gem is not available on rubyforge, so you have to install it with 
   gem 'ar-tokens'
 ```
 
+License
+-------
+This project rocks and uses MIT-LICENSE.
