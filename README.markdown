@@ -10,6 +10,7 @@ Parameters
     * :length: the token length (default: 8)
     * :uniq: whether the token must be uniq or not (default: true)
     * :scope: the column for the scope to check the uniqueness (default: nil)
+    * :characters: an array of characters the tokens should be build from (default: a-zA-Z0-9)
 
 Example
 -------

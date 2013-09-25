@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ActiveRecord::Mixin::TokenGenerator do
   before :each do
-    @klass = TokenTest.dup    
+    @klass = TokenTest.dup
   end
 
   it "geneates a token" do
@@ -54,5 +54,11 @@ describe ActiveRecord::Mixin::TokenGenerator do
     @klass.tokenize [:token, :token_two], :same_token => true
     r = @klass.create!
     r.token.should == r.token_two
+  end
+
+  it "generates tokens from the given character map" do
+    SecureRandom.stub(:random_number).and_return(0)
+    @klass.tokenize :token, :characters => ['x']
+    @klass.create.token.should == 'xxxxxxxx'
   end
 end

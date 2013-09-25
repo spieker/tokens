@@ -15,6 +15,7 @@ module ActiveRecord
         # ** :uniq: whether the token must be uniq or not (default: true)
         # ** :scope: the column for the scope to check the uniqueness (default: nil)
         # ** :same_token: if an array of columns is given and this option is true, all columns will get the same token (default: false)
+        # ** :characters: an array of characters used for token generation
         #
         # == Example
         #   class User < ActiveRecord::Base
@@ -29,7 +30,8 @@ module ActiveRecord
             :uniq       => true,
             :scope      => nil,
             :same_token => false,
-            :max_try    => 8
+            :max_try    => 8,
+            :characters => ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a
           }.merge(args.extract_options!)
           
           columns = [columns] unless columns.is_a?(Array)
@@ -42,7 +44,7 @@ module ActiveRecord
               raise NoFreeToken.new(column) if counter >= options[:max_try]
               counter += 1
 
-              token = new_token(options[:length]) if(token.blank? or not options[:same_token])
+              token = new_token(options[:length], options[:characters]) if(token.blank? or not options[:same_token])
               self.send("#{column}=".to_sym, token)
               result[column.to_sym]      = token
               condition                  = { column => token }
@@ -64,8 +66,8 @@ module ActiveRecord
           options = {
             :on => :create
           }.merge(args.extract_options!)
-          before_validation_options = options.reject { |k,v| [:length, :uniq, :scope, :same_token].include?(k) }
-          options.select! { |k,v| [:length, :uniq, :scope, :same_token].include?(k) }
+          before_validation_options = options.reject { |k,v| [:length, :uniq, :scope, :same_token, :characters].include?(k) }
+          options.select! { |k,v| [:length, :uniq, :scope, :same_token, :characters].include?(k) }
 
           before_validation before_validation_options do |obj|
             obj.generate_token column, options
