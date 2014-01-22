@@ -9,5 +9,9 @@ ActiveRecord::Migration.create_table :token_tests do |t|
 end
 
 class TokenTest < ActiveRecord::Base
-  set_table_name 'token_tests'
+  if respond_to?(:set_table_name)
+    set_table_name 'token_tests'
+  else
+    self.table_name = 'token_tests'
+  end
 end
