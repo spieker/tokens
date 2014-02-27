@@ -10,7 +10,7 @@ describe ActiveRecord::Mixin::TokenGenerator do
     @klass.tokenize :token
     @klass.create.token.should == 'aaaaaaaa'
   end
-  
+
   it "raises an exception if no free token is available" do
     SecureRandom.stub(:random_number).and_return(0)
     @klass.tokenize :token
@@ -26,7 +26,7 @@ describe ActiveRecord::Mixin::TokenGenerator do
     @klass.create.token.should == 'aaaaaaaa'
     @klass.create.token.should == 'aaaaaaaa'
   end
-  
+
   it "generates duplicate tokens in different scopes if allowed" do
     SecureRandom.stub(:random_number).and_return(0)
     @klass.tokenize :token, :scope => 'scope'
@@ -41,6 +41,14 @@ describe ActiveRecord::Mixin::TokenGenerator do
       10.times do
         @klass.create.token.length.should == i
       end
+    end
+  end
+
+  it "generates tokens with length specified by the return value of a given block" do
+    (6..32).each do |i|
+      @klass = TokenTest.dup
+      @klass.tokenize :token, :length => Proc.new { |m| i }
+      @klass.create.token.length.should == i
     end
   end
 

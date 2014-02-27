@@ -33,9 +33,12 @@ module ActiveRecord
             :max_try    => 8,
             :characters => ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a
           }.merge(args.extract_options!)
-          
+
           columns = [columns] unless columns.is_a?(Array)
-          
+          if options[:length].respond_to?(:call)
+            options[:length] = options[:length].call(self)
+          end
+
           result = {}
           token = nil
           columns.each do |column|
@@ -71,10 +74,10 @@ module ActiveRecord
 
           before_validation before_validation_options do |obj|
             obj.generate_token column, options
-          end  
+          end
         end
       end
-  
+
       def self.included(receiver)
         receiver.send :include, InstanceMethods
         receiver.extend ClassMethods

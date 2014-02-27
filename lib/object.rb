@@ -1,7 +1,7 @@
 # This provides a method for generating a random token of the given length.
 # The generated token is base58 encoded, so the token just contains numbers,
 # up- and down case characters.
-# 
+#
 # Example:
 #   Object.new_token(10) # => "S2Mq4mJBv6" (i.e.)
 # or
@@ -15,7 +15,7 @@ class Object
     end
     result
   end
-  
+
   def new_token(length=8, characters = ('a'..'z').to_a+('A'..'Z').to_a+(0..9).to_a)
     self.class.new_token(length, characters)
   end
