@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{This gem lets you easily generate tokens on ruby objects and provides additional methods on ActiveRecord::Base to generate tokens on records}
 
   s.rubyforge_project = "tokens"
-  
+
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
