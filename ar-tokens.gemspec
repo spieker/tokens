@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'activerecord'
+
+  s.add_development_dependency "coveralls", "~> 0"
 end
