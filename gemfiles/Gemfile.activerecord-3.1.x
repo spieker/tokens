@@ -7,5 +7,6 @@ gem 'activerecord', '~> 3.1.0'
 
 group :test do
   gem 'rake'
+  gem 'coveralls', require: false
 end
 
