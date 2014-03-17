@@ -1,6 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/ar-tokens.png)](http://badge.fury.io/rb/ar-tokens)
 [![Build Status](https://travis-ci.org/spieker/tokens.png?branch=master)](https://travis-ci.org/spieker/tokens)
 [![Code Climate](https://codeclimate.com/github/spieker/tokens.png)](https://codeclimate.com/github/spieker/tokens)
+[![Coverage Status](https://coveralls.io/repos/spieker/tokens/badge.png?branch=master)](https://coveralls.io/r/spieker/tokens?branch=master)
 
 For generating a token on an active record column you can use `tokenize`
 
